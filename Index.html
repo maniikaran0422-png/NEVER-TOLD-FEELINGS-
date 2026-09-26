@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Princess ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --wine:#180A12;
+  --wine-deep:#0e050a;
+  --crimson:#C7365F;
+  --rose:#F06A8D;
+  --blush:#FFD6E0;
+  --gold:#E8C98B;
+  --white:#FFF8F9;
+  --muted:#C9AEB6;
+
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Montserrat",sans-serif;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--wine);
+  color:var(--white);
+  font-family:var(--sans);
+  overflow-x:hidden;
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
+}
+
+.background{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+
+  background:
+    radial-gradient(circle at 50% 35%,
+      rgba(199,54,95,.20),
+      transparent 42%),
+    radial-gradient(circle at 10% 90%,
+      rgba(240,106,141,.08),
+      transparent 35%),
+    linear-gradient(
+      145deg,
+      var(--wine),
+      var(--wine-deep)
+    );
+}
+
+.glow{
+  position:fixed;
+  width:330px;
+  height:330px;
+  border-radius:50%;
+  background:rgba(199,54,95,.10);
+  filter:blur(90px);
+  left:50%;
+  top:45%;
+  transform:translate(-50%,-50%);
+  animation:breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes breathe{
+  from{
+    transform:translate(-50%,-50%) scale(.8);
+  }
+  to{
+    transform:translate(-50%,-50%) scale(1.15);
+  }
+}
+
+.vignette{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+  box-shadow:inset 0 0 120px rgba(0,0,0,.75);
+}
+
+/* SECTIONS */
+
+section{
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:70px 20px;
+  position:relative;
+  z-index:2;
+}
+
+.content{
+  width:100%;
+  max-width:650px;
+  text-align:center;
+}
+
+.hidden{
+  opacity:0;
+  transform:translateY(35px);
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* COMMON */
+
+.label{
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+h1,h2,h3{
+  font-family:var(--serif);
+  font-weight:400;
+}
+
+p{
+  line-height:1.8;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-width:180px;
+  min-height:56px;
+
+  padding:14px 25px;
+
+  border-radius:999px;
+
+  border:1px solid rgba(240,106,141,.45);
+
+  background:rgba(199,54,95,.13);
+
+  color:var(--blush);
+
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+
+  cursor:pointer;
+
+  transition:.3s ease;
+}
+
+.btn:hover{
+  background:rgba(199,54,95,.25);
+  border-color:var(--rose);
+  transform:translateY(-3px);
+}
+
+.btn:active{
+  transform:scale(.96);
+}
+
+/* OPENING */
+
+#opening{
+  text-align:center;
+}
+
+.open-title{
+  font-size:clamp(65px,18vw,110px);
+  line-height:.85;
+  color:var(--white);
+  animation:titleIn 1.4s ease both;
+}
+
+.open-title span{
+  display:block;
+  color:var(--blush);
+  font-style:italic;
+}
+
+.open-sub{
+  margin:35px auto;
+  max-width:500px;
+  color:var(--muted);
+  font-family:var(--serif);
+  font-size:clamp(20px,5vw,27px);
+  animation:fadeUp 1s ease .6s both;
+}
+
+.open-btn{
+  animation:fadeUp 1s ease 1s both;
+}
+
+.bottom-note{
+  position:absolute;
+  bottom:25px;
+  left:0;
+  right:0;
+  color:rgba(201,174,182,.45);
+  font-size:8px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+}
+
+@keyframes titleIn{
+  from{
+    opacity:0;
+    filter:blur(15px);
+    transform:scale(.9);
+  }
+  to{
+    opacity:1;
+    filter:blur(0);
+    transform:scale(1);
+  }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* BEGINNING */
+
+.date{
+  font-family:var(--serif);
+  font-size:clamp(40px,10vw,65px);
+  color:var(--blush);
+  margin-bottom:10px;
+}
+
+.time{
+  color:var(--gold);
+  letter-spacing:.18em;
+  font-size:11px;
+  margin-bottom:40px;
+}
+
+.story{
+  color:var(--muted);
+  font-family:var(--serif);
+  font-size:22px;
+}
+
+/* CARDS */
+
+.card{
+  margin-top:30px;
+  padding:28px 22px;
+
+  border:1px solid rgba(240,106,141,.15);
+  border-radius:24px;
+
+  background:rgba(255,255,255,.035);
+  backdrop-filter:blur(12px);
+}
+
+.card h3{
+  color:var(--blush);
+  font-size:30px;
+  margin-bottom:20px;
+}
+
+.list{
+  list-style:none;
+  text-align:left;
+}
+
+.list li{
+  color:var(--muted);
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  line-height:1.6;
+}
+
+.list li:last-child{
+  border-bottom:none;
+}
+
+/* GOLDEN */
+
+.golden{
+  color:var(--gold);
+  font-family:var(--serif);
+  font-size:22px;
+  line-height:1.7;
+}
+
+/* LOVE LINES */
+
+.love-box{
+  min-height:420px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.love-line{
+  font-family:var(--serif);
+  font-size:clamp(32px,8vw,55px);
+  color:var(--blush);
+  opacity:0;
+  transform:translateY(20px);
+  transition:1s ease;
+}
+
+.love-line.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.final-love{
+  color:var(--rose);
+  font-style:italic;
+}
+
+/* MESSAGE */
+
+.message{
+  text-align:left;
+  color:var(--muted);
+  font-family:var(--serif);
+  font-size:21px;
+  line-height:1.75;
+}
+
+.message strong{
+  color:var(--blush);
+  font-weight:400;
+}
+
+/* FINAL */
+
+.final-title{
+  font-size:clamp(50px,13vw,80px);
+  color:var(--blush);
+  line-height:.9;
+  margin-bottom:25px;
+}
+
+.question{
+  font-family:var(--serif);
+  font-size:clamp(28px,7vw,42px);
+  line-height:1.25;
+  margin-bottom:12px;
+}
+
+.question span{
+  color:var(--rose);
+  font-style:italic;
+}
+
+.question-sub{
+  color:var(--muted);
+  font-family:var(--serif);
+  font-size:22px;
+  margin-bottom:40px;
+}
+
+.answers{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.yes{
+  border-color:rgba(240,106,141,.6);
+}
+
+.no{
+  border-color:rgba(201,174,182,.25);
+  color:var(--muted);
+  background:rgba(255,255,255,.025);
+}
+
+/* RESPONSE */
+
+.response{
+  display:none;
+}
+
+.response.show{
+  display:block;
+  animation:responseIn 1s ease both;
+}
+
+.response-icon{
+  font-size:45px;
+  margin-bottom:20px;
+}
+
+.response-title{
+  font-family:var(--serif);
+  font-size:clamp(45px,12vw,70px);
+  color:var(--blush);
+  margin-bottom:20px;
+}
+
+.response-text{
+  color:var(--muted);
+  font-family:var(--serif);
+  font-size:22px;
+  line-height:1.7;
+}
+
+.response-text strong{
+  color:var(--gold);
+  font-weight:400;
+}
+
+@keyframes responseIn{
+  from{
+    opacity:0;
+    transform:scale(.9);
+    filter:blur(8px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  section{
+    padding:60px 17px;
+  }
+
+  .card{
+    padding:24px 18px;
+  }
+
+  .message{
+    font-size:19px;
+  }
+
+  .answers .btn{
+    min-width:145px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background">
+  <div class="glow"></div>
+</div>
+
+<canvas id="particles"></canvas>
+
+<div class="vignette"></div>
+
+
+<!-- 1. OPENING -->
+
+<section id="opening">
+
+  <div class="content">
+
+    <div class="label">
+      For My Princess
+    </div>
+
+    <h1 class="open-title">
+      My
+      <span>Princess</span>
+    </h1>
+
+    <p class="open-sub">
+      A little place I made for someone
+      who became very special to me.
+    </p>
+
+    <button
+      class="btn open-btn"
+      onclick="goTo('beginning')"
+    >
+      Enter My Heart
+    </button>
+
+  </div>
+
+  <div class="bottom-note">
+    Made with love · Just for you
+  </div>
+
+</section>
+
+
+<!-- 2. BEGINNING -->
+
+<section id="beginning">
+
+  <div class="content hidden">
+
+    <div class="label">
+      Our Beginning
+    </div>
+
+    <div class="date">
+      02 August 2025
+    </div>
+
+    <div class="time">
+      10:42 PM
+    </div>
+
+    <p class="story">
+      Some connections don't announce themselves
+      when they begin.
+      <br><br>
+      They simply start with one conversation,
+      one moment, one ordinary night.
+      <br><br>
+      And somehow, that moment becomes
+      something you'll always remember.
+    </p>
+
+    <br><br>
+
+    <button
+      class="btn"
+      onclick="goTo('goodthings')"
+    >
+      Continue
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- 3. GOOD THINGS -->
+
+<section id="goodthings">
+
+  <div class="content hidden">
+
+    <div class="label">
+      Hum Dono
+    </div>
+
+    <h2 class="date">
+      Achhi Baatein
+    </h2>
+
+    <div class="card">
+
+      <h3>
+        Hum dono kiii axchiii
+        or pyariii baateinnn
+      </h3>
+
+      <ul class="list">
+
+        <li>
+          Sbse achii baat toh yhi h ki
+          apan dono best friend haiii
+        </li>
+
+        <li>
+          Humesha ek-dusre ko smjhnaaa
+        </li>
+
+        <li>
+          Kbhi Zyda der tak gussa nhi rehnaaa
+        </li>
+
+        <li>
+          CARE KRNAAA EK DUSRE KAAA
+        </li>
+
+        <li>
+          HELP KRNAA
+        </li>
+
+        <li>
+          KBHI bhi kuch bhi ek dusre see
+          koi bhi baat ko nhh hide Krna
+          sbb btana
+        </li>
+
+        <li>
+          Ummmm speca8toh bhaut kuch h mere
+          pass Btane ke liyee princesss like
+          late nights video calls, phots, videos..
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="card">
+
+      <h3>
+        Golden Things
+      </h3>
+
+      <p class="golden">
+
+        Avni_singh4532 💓💓💓💓💓💓💓💓💓💓
+        sch btau toh yehhh jo I'd thii sch me
+        achii thii bcz hum dono ka late nights
+        baata calls msgs voice calls recording
+        ek dusre ko pure din ke baare batana
+        <br><br>
+
+        Ummmm vohh sbb share Krna jo abb hum
+        dono nhi krte 🙂
+        I know kii glti aapki bhi nhi or mera
+        bhi nhi bss situation hi aisee ho jaate
+        h kii kuch share nhi krtee
+        <br><br>
+
+        butt jo bhi hai mujhe toh vhin din
+        humesha se chiye thein jo phele theinnn
+        aapko toh kuch ydd bhi nhi or naa kuch
+        kbhi krte ho ydd
+        maybee kisi din aap bhi kroge yddd
+        last hopee🎀
+        <br><br>
+
+        jo bhi h Ydaa kuch nhi bolunga
+        ek hint detaa hunnn
+        jan-feb mehh hum dono ne ek promise
+        Kiya tha idk aapko yaad h ya nhi
+        but mujhe yadd hai..........
+
+      </p>
+
+    </div>
+
+    <br>
+
+    <button
+      class="btn"
+      onclick="goTo('love')"
+    >
+      Continue
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- 4. I LOVE M -->
+
+<section id="love">
+
+  <div class="content hidden">
+
+    <div class="label">
+      Things I Love About M
+    </div>
+
+    <div class="love-box">
+
+      <div
+        id="loveLine"
+        class="love-line"
+      >
+      </div>
+
+    </div>
+
+    <button
+      id="loveContinue"
+      class="btn"
+      style="display:none;"
+      onclick="goTo('message')"
+    >
+      Continue
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- 5. MESSAGE -->
+
+<section id="message">
+
+  <div class="content hidden">
+
+    <div class="label">
+      Something I Wanted To Say
+    </div>
+
+    <div class="card">
+
+      <p class="message">
+
+        Hmmmmm waiseee pgliiii…
+        reply honestly dena. ❤️
+        <br><br>
+
+        Do you love me?
+        Not as a friend?
+        <br><br>
+
+        I know yeh question aapko bahut hurt
+        karne wala ho sakta hai, but idk kyun yrr…
+        maine yeh website banayi.
+        <br><br>
+
+        Sach bataun toh main aapko aapke birthday
+        ke din hi sab bolna chahta tha.
+        Lekin Ankit, ghar ke problems, study tension
+        aur yeh sab cheezon ki wajah se maine bahut
+        jaldi old wala website ready karke aapko
+        de diya tha.
+        <br><br>
+
+        But real mein toh main birthday +
+        purpose wala website hi bana raha tha.
+        <br><br>
+
+        Isliye… hurt karne ke liye dil se sorry nahi,
+        balki bas itna kehna hai ki mera intention
+        aapko hurt karna nahi tha. 🎀
+        <br><br>
+
+        Sach bataun… mujhe pata hai ki yeh sab
+        sunke aapko bahut zyada hurt ho sakta hai.
+        <br><br>
+
+        Aur main “sorry” bhi nahi bolna chahta,
+        kyunki hurt karne ke baad sirf sorry bol dena
+        kabhi-kabhi formality jaisa feel hota hai.
+        <br><br>
+
+        Bas itna hai… agar meri wajah se aap hurt
+        hoti hain, toh main aapko manane ki koshish
+        hamesha karta rahunga —
+        <strong>
+        lekin aap par kisi bhi answer ka pressure nahi hai.
+        </strong>
+        <br><br>
+
+        Jo bhi aap honestly feel karti hain…
+        wahi kehna. ❤️
+
+      </p>
+
+    </div>
+
+    <br><br>
+
+    <button
+      class="btn"
+      onclick="goTo('final')"
+    >
+      One Last Question
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- 6. FINAL QUESTION -->
+
+<section id="final">
+
+  <div
+    class="content"
+    id="questionContent"
+  >
+
+    <div class="label">
+      One Last Question
+    </div>
+
+    <h2 class="final-title">
+      Manisha...
+    </h2>
+
+    <div class="question">
+      Do you love me?
+    </div>
+
+    <div class="question-sub">
+      Not just as a friend,
+      <br>
+      but as someone
+      <span>special?</span>
+    </div>
+
+    <div class="answers">
+
+      <button
+        class="btn yes"
+        onclick="sendAnswer('YES')"
+      >
+        YES ❤️
+      </button>
+
+      <button
+        class="btn no"
+        onclick="sendAnswer('NO')"
+      >
+        NO 🤍
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- RESPONSE -->
+
+  <div
+    class="content response"
+    id="response"
+  >
+
+    <div
+      class="response-icon"
+      id="responseIcon"
+    >
+      ❤️
+    </div>
+
+    <h2
+      class="response-title"
+      id="responseTitle"
+    >
+      Thank You
+    </h2>
+
+    <p
+      class="response-text"
+      id="responseText"
+    ></p>
+
+  </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   PARTICLES
+========================= */
+
+const canvas =
+  document.getElementById("particles");
+
+const ctx =
+  canvas.getContext("2d");
+
+let width;
+let height;
+let particles=[];
+
+
+function resizeCanvas(){
+
+  width=window.innerWidth;
+  height=window.innerHeight;
+
+  const ratio=
+    window.devicePixelRatio || 1;
+
+  canvas.width=width*ratio;
+  canvas.height=height*ratio;
+
+  canvas.style.width=width+"px";
+  canvas.style.height=height+"px";
+
+  ctx.setTransform(
+    ratio,0,0,ratio,0,0
+  );
+
+}
+
+
+function createParticles(){
+
+  particles=[];
+
+  const amount=
+    width<500 ? 30 : 45;
+
+  for(let i=0;i<amount;i++){
+
+    particles.push({
+
+      x:Math.random()*width,
+
+      y:Math.random()*height,
+
+      size:Math.random()*1.3+.3,
+
+      speed:Math.random()*.25+.05,
+
+      alpha:Math.random()*.35+.05
+
+    });
+
+  }
+
+}
+
+
+function animateParticles(){
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+  particles.forEach(p=>{
+
+    p.y-=p.speed;
+
+    if(p.y<-5){
+
+      p.y=height+5;
+
+      p.x=Math.random()*width;
+
+    }
+
+    ctx.beginPath();
+
+    ctx.arc(
+      p.x,
+      p.y,
+      p.size,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fillStyle=
+      `rgba(255,214,224,${p.alpha})`;
+
+    ctx.fill();
+
+  });
+
+  requestAnimationFrame(
+    animateParticles
+  );
+
+}
+
+
+resizeCanvas();
+createParticles();
+animateParticles();
+
+window.addEventListener(
+  "resize",
+  ()=>{
+    resizeCanvas();
+    createParticles();
+  }
+);
+
+
+/* =========================
+   SECTION NAVIGATION
+========================= */
+
+function goTo(id){
+
+  const target=
+    document.getElementById(id);
+
+  target.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const observer=
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add(
+            "visible"
+          );
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.18
+    }
+  );
+
+
+document
+  .querySelectorAll(".hidden")
+  .forEach(el=>{
+    observer.observe(el);
+  });
+
+
+/* =========================
+   I LOVE M ANIMATION
+========================= */
+
+const loveLines=[
+
+  "I love M's personality.",
+
+  "I love M's smile.",
+
+  "I love M's hair.",
+
+  "I love M's eyes.",
+
+  "I love M's name.",
+
+  "I love M's humor.",
+
+  "I love M's heart.",
+
+  "I love M's voice.",
+
+  "I love M's height.",
+
+  "I love everything about M.",
+
+  "I love M. ❤️"
+
+];
+
+let loveStarted=false;
+
+
+function startLoveAnimation(){
+
+  if(loveStarted) return;
+
+  loveStarted=true;
+
+  const line=
+    document.getElementById("loveLine");
+
+  const button=
+    document.getElementById("loveContinue");
+
+  let index=0;
+
+
+  function showNext(){
+
+    line.classList.remove("show");
+
+    setTimeout(()=>{
+
+      line.textContent=
+        loveLines[index];
+
+      line.classList.add("show");
+
+      index++;
+
+      if(index<loveLines.length){
+
+        setTimeout(
+          showNext,
+          2100
+        );
+
+      }else{
+
+        setTimeout(()=>{
+
+          button.style.display=
+            "inline-flex";
+
+        },1800);
+
+      }
+
+    },500);
+
+  }
+
+
+  showNext();
+
+}
+
+
+const loveSection=
+  document.getElementById("love");
+
+
+const loveObserver=
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(
+          entry.isIntersecting
+        ){
+
+          startLoveAnimation();
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.4
+    }
+  );
+
+
+loveObserver.observe(
+  loveSection
+);
+
+
+/* =========================
+   EMAIL RESPONSE
+========================= */
+
+async function sendAnswer(answer){
+
+  const question=
+    document.getElementById(
+      "questionContent"
+    );
+
+  const response=
+    document.getElementById(
+      "response"
+    );
+
+  const icon=
+    document.getElementById(
+      "responseIcon"
+    );
+
+  const title=
+    document.getElementById(
+      "responseTitle"
+    );
+
+  const text=
+    document.getElementById(
+      "responseText"
+    );
+
+
+  try{
+
+    await fetch(
+      "https://formsubmit.co/ajax/maniikaran0422@gmail.com",
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+            "application/json",
+
+          "Accept":
+            "application/json"
+        },
+
+        body:JSON.stringify({
+
+          response:answer,
+
+          message:
+            answer==="YES"
+            ? "Manisha chose YES ❤️"
+            : "Manisha chose NO 🤍",
+
+          submitted_at:
+            new Date()
+            .toLocaleString("en-IN"),
+
+          _subject:
+            "💌 Princess Website Response"
+
+        })
+
+      }
+    );
+
+  }catch(error){
+
+    console.log(
+      "Response error:",
+      error
+    );
+
+  }
+
+
+  question.style.display="none";
+
+  response.classList.add("show");
+
+
+  if(answer==="YES"){
+
+    icon.textContent="❤️";
+
+    title.textContent=
+      "You said YES.";
+
+    text.innerHTML=
+      "Thank you for answering honestly. ❤️"+
+      "<br><br>"+
+      "You just made this little story "+
+      "<strong>even more special.</strong>";
+
+  }else{
+
+    icon.textContent="💓";
+
+    title.textContent=
+      "THNXXXXXXXXX";
+
+    text.innerHTML=
+      "Isliye nahi ki aapne NO par click kiya, "+
+      "lekin isliye kiii aapne "+
+      "<strong>honestly answer diya.</strong> 🫠"+
+      "<br><br>"+
+      "Bas yahi chahta tha ki jo bhi aap feel karti hain, "+
+      "woh bina kisi pressure ke honestly bataayein. ❤️";
+
+  }
+
+}
+
+</script>
+
+</body>
+  </html>
