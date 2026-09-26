@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>One Last Question</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@200;300;400;500&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --wine: #180A12;
+      --wine-deep: #0e050a;
+      --crimson: #C7365F;
+      --rose: #F06A8D;
+      --blush: #FFD6E0;
+      --gold: #E8C98B;
+      --white: #FFF8F9;
+      --muted: #C9AEB6;
+
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Montserrat", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--wine);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100dvh;
+      font-family: var(--sans);
+    }
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+
+      background:
+        radial-gradient(
+          circle at 50% 42%,
+          rgba(199, 54, 95, .19),
+          transparent 43%
+        ),
+        radial-gradient(
+          circle at 15% 85%,
+          rgba(240, 106, 141, .08),
+          transparent 35%
+        ),
+        linear-gradient(
+          145deg,
+          var(--wine),
+          var(--wine-deep)
+        );
+    }
+
+    .glow {
+      position: absolute;
+
+      width: 340px;
+      height: 340px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(199, 54, 95, .10);
+
+      filter: blur(90px);
+
+      top: 45%;
+      left: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      animation:
+        breathe 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes breathe {
+
+      from {
+        transform:
+          translate(-50%, -50%)
+          scale(.82);
+      }
+
+      to {
+        transform:
+          translate(-50%, -50%)
+          scale(1.15);
+      }
+
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      pointer-events: none;
+
+      z-index: 1;
+    }
+
+    .vignette {
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      z-index: 2;
+
+      box-shadow:
+        inset 0 0 120px
+        rgba(0, 0, 0, .8);
+    }
+
+    main {
+      position: relative;
+
+      z-index: 5;
+
+      min-height: 100dvh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 35px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+
+      text-align: center;
+    }
+
+    .label {
+      font-size: 9px;
+
+      letter-spacing: .34em;
+
+      text-transform: uppercase;
+
+      color: var(--gold);
+
+      font-weight: 300;
+
+      margin-bottom: 18px;
+
+      animation:
+        fadeUp 1s ease .2s both;
+    }
+
+    .name {
+      font-family: var(--serif);
+
+      font-size:
+        clamp(52px, 15vw, 78px);
+
+      font-weight: 400;
+
+      line-height: .9;
+
+      color: var(--blush);
+
+      margin-bottom: 25px;
+
+      animation:
+        titleReveal 1.3s ease .3s both;
+    }
+
+    .question {
+      font-family: var(--serif);
+
+      font-size:
+        clamp(28px, 8vw, 42px);
+
+      line-height: 1.2;
+
+      font-weight: 300;
+
+      color: var(--white);
+
+      margin-bottom: 14px;
+
+      animation:
+        fadeUp 1s ease .7s both;
+    }
+
+    .question span {
+      color: var(--rose);
+
+      font-style: italic;
+    }
+
+    .sub-question {
+      color: var(--muted);
+
+      font-family: var(--serif);
+
+      font-size:
+        clamp(20px, 5vw, 27px);
+
+      line-height: 1.4;
+
+      margin-bottom: 45px;
+
+      animation:
+        fadeUp 1s ease .95s both;
+    }
+
+    /* BUTTONS */
+
+    .buttons {
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 15px;
+
+      animation:
+        buttonsReveal 1s ease 1.3s both;
+    }
+
+    .answer {
+      width: 145px;
+
+      min-height: 58px;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      font-family: var(--sans);
+
+      font-size: 10px;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
+
+      transition:
+        .3s ease;
+    }
+
+    .yes {
+      border:
+        1px solid
+        rgba(240, 106, 141, .55);
+
+      background:
+        rgba(199, 54, 95, .16);
+
+      color: var(--blush);
+    }
+
+    .yes:hover {
+      border-color: var(--rose);
+
+      background:
+        rgba(199, 54, 95, .28);
+
+      transform:
+        translateY(-3px);
+    }
+
+    .no {
+      border:
+        1px solid
+        rgba(201, 174, 182, .25);
+
+      background:
+        rgba(255, 248, 249, .035);
+
+      color: var(--muted);
+    }
+
+    .no:hover {
+      border-color: var(--muted);
+
+      color: var(--white);
+
+      transform:
+        translateY(-3px);
+    }
+
+    .answer:active {
+      transform: scale(.95);
+    }
+
+    /* RESULT */
+
+    .result {
+      display: none;
+
+      animation:
+        resultReveal 1.1s ease both;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result-icon {
+      font-size: 38px;
+
+      margin-bottom: 20px;
+    }
+
+    .result-title {
+      font-family: var(--serif);
+
+      font-size:
+        clamp(36px, 10vw, 55px);
+
+      line-height: 1;
+
+      color: var(--blush);
+
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-family: var(--serif);
+
+      font-size: 21px;
+
+      line-height: 1.6;
+
+      color: var(--muted);
+
+      max-width: 400px;
+
+      margin: auto;
+    }
+
+    .result-text strong {
+      color: var(--gold);
+
+      font-weight: 400;
+    }
+
+    .back-note {
+      margin-top: 25px;
+
+      font-size: 9px;
+
+      color: var(--muted);
+
+      letter-spacing: .12em;
+    }
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+
+    }
+
+    @keyframes titleReveal {
+
+      from {
+        opacity: 0;
+
+        filter: blur(12px);
+
+        transform:
+          scale(.94)
+          translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+
+        filter: blur(0);
+
+        transform:
+          scale(1)
+          translateY(0);
+      }
+
+    }
+
+    @keyframes buttonsReveal {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(20px)
+          scale(.96);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+
+    }
+
+    @keyframes resultReveal {
+
+      from {
+        opacity: 0;
+
+        transform:
+          scale(.9)
+          translateY(20px);
+
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          scale(1)
+          translateY(0);
+
+        filter: blur(0);
+      }
+
+    }
+
+    @media (max-width: 430px) {
+
+      main {
+        padding:
+          30px 16px;
+      }
+
+      .buttons {
+        gap: 10px;
+      }
+
+      .answer {
+        width: 135px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="background">
+    <div class="glow"></div>
+  </div>
+
+  <canvas id="particles"></canvas>
+
+  <div class="vignette"></div>
+
+
+  <main>
+
+    <div class="container" id="questionScreen">
+
+      <div class="label">
+        One Last Question
+      </div>
+
+
+      <div class="name">
+        Manisha...
+      </div>
+
+
+      <div class="question">
+        Do you love me?
+      </div>
+
+
+      <div class="sub-question">
+        Not just as a friend,
+        <br>
+        but as someone <span>special?</span>
+      </div>
+
+
+      <div class="buttons">
+
+        <button
+          class="answer yes"
+          onclick="sendAnswer('YES')"
+        >
+          YES ❤️
+        </button>
+
+
+        <button
+          class="answer no"
+          onclick="sendAnswer('NO')"
+        >
+          NO 🤍
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div
+      class="container result"
+      id="resultScreen"
+    >
+
+      <div
+        class="result-icon"
+        id="resultIcon"
+      >
+        ❤️
+      </div>
+
+
+      <div
+        class="result-title"
+        id="resultTitle"
+      >
+        Thank You
+      </div>
+
+
+      <div
+        class="result-text"
+        id="resultText"
+      ></div>
+
+
+      <div class="back-note">
+        Your answer has been received.
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    /* PARTICLES */
+
+    const canvas =
+      document.getElementById("particles");
+
+    const ctx =
+      canvas.getContext("2d");
+
+    let width;
+    let height;
+
+    let particles = [];
+
+
+    function resize() {
+
+      width =
+        window.innerWidth;
+
+      height =
+        window.innerHeight;
+
+      const ratio =
+        window.devicePixelRatio || 1;
+
+      canvas.width =
+        width * ratio;
+
+      canvas.height =
+        height * ratio;
+
+      canvas.style.width =
+        width + "px";
+
+      canvas.style.height =
+        height + "px";
+
+      ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+      );
+
+    }
+
+
+    function createParticles() {
+
+      particles = [];
+
+      const count =
+        width < 500 ? 25 : 35;
+
+
+      for (
+        let i = 0;
+        i < count;
+        i++
+      ) {
+
+        particles.push({
+
+          x:
+            Math.random() * width,
+
+          y:
+            Math.random() * height,
+
+          size:
+            Math.random() * 1.2 + .3,
+
+          speed:
+            Math.random() * .2 + .06,
+
+          alpha:
+            Math.random() * .3 + .08
+
+        });
+
+      }
+
+    }
+
+
+    function animate() {
+
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+
+      particles.forEach(p => {
+
+        p.y -= p.speed;
+
+
+        if (p.y < -5) {
+
+          p.y =
+            height + 5;
+
+          p.x =
+            Math.random() * width;
+
+        }
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+          p.x,
+          p.y,
+          p.size,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle =
+          `rgba(255,214,224,${p.alpha})`;
+
+        ctx.fill();
+
+      });
+
+
+      requestAnimationFrame(animate);
+
+    }
+
+
+    resize();
+
+    createParticles();
+
+    animate();
+
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        resize();
+
+        createParticles();
+
+      }
+    );
+
+
+    /* SEND RESPONSE */
+
+    async function sendAnswer(answer) {
+
+      const questionScreen =
+        document.getElementById("questionScreen");
+
+      const resultScreen =
+        document.getElementById("resultScreen");
+
+      const resultIcon =
+        document.getElementById("resultIcon");
+
+      const resultTitle =
+        document.getElementById("resultTitle");
+
+      const resultText =
+        document.getElementById("resultText");
+
+
+      const message =
+        answer === "YES"
+
+        ? "Manisha chose YES ❤️"
+
+        : "Manisha chose NO 🤍";
+
+
+      /* SEND EMAIL */
+
+      try {
+
+        await fetch(
+          "https://formsubmit.co/ajax/maniikaran0422@gmail.com",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+
+              "Accept":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+
+              name:
+                "Princess Website",
+
+              response:
+                answer,
+
+              message:
+                message,
+
+              submitted_at:
+                new Date().toLocaleString(
+                  "en-IN"
+                ),
+
+              _subject:
+                "💌 Princess Website Response"
+
+            })
+
+          }
+        );
+
+      } catch (error) {
+
+        console.log(
+          "Email submission error:",
+          error
+        );
+
+      }
+
+
+      /* HIDE QUESTION */
+
+      questionScreen.style.display =
+        "none";
+
+
+      /* SHOW RESULT */
+
+      resultScreen.classList.add("show");
+
+
+      if (answer === "YES") {
+
+        resultIcon.textContent =
+          "❤️";
+
+        resultTitle.textContent =
+          "You said YES.";
+
+        resultText.innerHTML =
+          "Thank you for answering honestly. ❤️<br><br>" +
+          "You just made this little story " +
+          "<strong>even more special.</strong>";
+
+      } else {
+
+        resultIcon.textContent =
+          "💓";
+
+        resultTitle.textContent =
+          "THNXXXXXXXXX";
+
+        resultText.innerHTML =
+          "Isliye nahi ki aapne NO par click kiya, " +
+          "lekin isliye kiii aapne " +
+          "<strong>honestly answer diya.</strong> 🫠" +
+          "<br><br>" +
+          "Bas yahi chahta tha ki jo bhi aap feel karti hain, " +
+          "woh bina kisi pressure ke honestly bataayein. ❤️";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+
+</html>
